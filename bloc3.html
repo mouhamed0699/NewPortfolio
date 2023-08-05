@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemple de création d'API REST avec Node.js et Express.js</title>
+  <!-- Mettez ici vos liens vers les fichiers CSS pour le style -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      width: 100%
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    h1, h2, h3 {
+      color: #333;
+    }
+
+    h2 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5rem;
+    }
+
+    pre {
+      color: brown;
+      background: lavender;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      overflow: auto;
+      font-size: 14px;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 2rem;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #333;
+      color: #fff;
+      padding: 1rem 0;
+    }
+
+    p{
+      font-size:1.35rem;
+    }
+
+    ul{
+      font-size: 1.35rem;
+    }
+    h3{
+      font-size: 1.35rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Exemple de création d'API REST avec Node.js et Express.js</h1>
+    <p style="font-size:1.35rem;">Un guide pour construire une API REST complète</p>
+  </header>
+
+  <main>
+    <section>
+      <h2 style="color:green">Qu'est-ce qu'une API REST ?</h2>
+      <p>Une API REST (Representational State Transfer) est un style d'architecture qui suit certaines contraintes pour la création de services web. Le terme "RESTful" qualifie une API qui respecte ces contraintes. Voici les principales caractéristiques d'une API REST :</p>
+      <ul>
+        <li><strong>Utilisation des méthodes HTTP standard :</strong> L'API REST utilise les méthodes HTTP standard pour effectuer des opérations CRUD sur les ressources. Par exemple, la méthode GET est utilisée pour récupérer des données, POST pour créer de nouvelles données, PUT pour mettre à jour des données existantes, et DELETE pour supprimer des données.</li>
+        <li><strong>Gestion sans état :</strong> Chaque requête vers l'API contient toutes les informations nécessaires pour être traitée. Il n'y a pas de dépendance à l'égard d'états de session côté serveur.</li>
+        <li><strong>URL structurées :</strong> Les URLs sont conçues de manière hiérarchique pour identifier les ressources. Par exemple, pour récupérer toutes les chambres, l'URL serait "/api/chambres".</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 style="color:green">Création de l'API REST</h2>
+      <p>Dans l'exemple ci-dessous, nous allons créer une API REST pour gérer des chambres d'hôtel. Nous utiliserons Node.js avec le framework Express pour la création de l'API et PostgreSQL comme base de données pour stocker les informations sur les chambres.</p>
+
+      <h3>Étape 1 : Configuration du projet</h3>
+      <p>Commencez par initialiser un nouveau projet Node.js et installez les dépendances nécessaires :</p>
+      <pre>
+// Initialisez un nouveau projet Node.js
+npm init
+
+// Installez les dépendances
+npm install express pg
+      </pre>
+
+      <h3>Étape 2 : Connexion à la base de données</h3>
+      <p>Créez un fichier de configuration pour la connexion à la base de données PostgreSQL. Dans notre cas, nous avons un fichier "db.js" :</p>
+      <pre>
+// db.js
+const { Pool } = require('pg');
+
+const pool = new Pool({
+    user: 'votre_utilisateur',
+    host: 'localhost',
+    database: 'votre_base_de_donnees',
+    password: 'votre_mot_de_passe',
+    port: 5432,
+});
+
+module.exports = pool;
+      </pre>
+      <p>Ce fichier définit une instance de la classe Pool pour établir la connexion à la base de données PostgreSQL.</p>
+
+      <h3>Étape 3 : Création de l'API</h3>
+      <p>Créez un fichier "app.js" pour définir votre application Express et les routes de l'API :</p>
+      <pre>
+// app.js
+const express = require('express');
+const pool = require('./db'); // Importez la configuration de la base de données
+
+const app = express();
+const port = 5200; // Port sur lequel l'API écoutera
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Route pour récupérer toutes les chambres
+app.get('/api/chambres', async (req, res) => {
+    try {
+        const query = "SELECT * FROM chambre";
+        const data = await pool.query(query);
+        return res.status(200).json(data.rows);
+    } catch (error) {
+        return res.status(500).json({ message: 'Erreur lors de la récupération des chambres' });
+    }
+});
+
+// Route pour insérer une nouvelle chambre
+app.post('/api/chambres', async (req, res) => {
+    try {
+        const { hotel, Prix, Note, ville, localisation, image } = req.body;
+        const query = "INSERT INTO chambre(hotel, Prix, Note, ville, localisation, image) VALUES($1, $2, $3, $4, $5, $6)";
+        const values = [hotel, Prix, Note, ville, localisation, image];
+        await pool.query(query, values);
+        return res.status(200).json({ message: 'Insertion réussie' });
+    } catch (error) {
+        return res.status(500).json({ message: 'Erreur lors de l\'insertion' });
+    }
+});
+
+// Continuez avec d'autres routes pour les opérations CRUD (Mise à jour, Suppression)
+
+// Démarrez le serveur
+app.listen(port, () => {
+    console.log(`Serveur en écoute sur le port ${port}`);
+});
+      </pre>
+      <p>Dans cet extrait de code, nous définissons deux routes pour l'API : une pour récupérer toutes les chambres et une autre pour insérer une nouvelle chambre. Vous pouvez ajouter d'autres routes pour les autres opérations CRUD selon vos besoins.</p>
+
+      <h3>Étape 4 : Exécution de l'API</h3>
+      <p>Exécutez l'API en utilisant la commande :</p>
+      <pre>
+node app.js
+      </pre>
+      <p>Votre API REST est maintenant en cours d'exécution et est prête à gérer les requêtes HTTP pour gérer les chambres d'hôtel.</p>
+
+    </section>
+
+    <section>
+      <h2 style="color:green">Ressources supplémentaires</h2>
+      <p>Pour approfondir vos connaissances sur les API REST, voici quelques ressources supplémentaires que vous pouvez consulter :</p>
+      <ul>
+        <li><a href="https://restfulapi.net/">RESTful API Design Guide</a></li>
+        <li><a href="https://www.restapitutorial.com/">REST API Tutorial</a></li>
+        <li><a href="https://www.digitalocean.com/community/tutorials/how-to-build-a-node-js-application-with-sql-database-and-deploy-it-to-digitalocean-using-nginx">How To Build a Node.js Application with SQL Database and Deploy It to DigitalOcean Using Nginx</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Tous droits réservés &copy; 2023 Mouhammed Niah</p>
+  </footer>
+</body>
+</html>

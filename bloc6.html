@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction à MySQL - Le système de gestion de base de données open-source</title>
+
+    <style>
+           body {
+               font-family: Arial, sans-serif;
+               line-height: 1.6;
+               margin: 0;
+               padding: 0;
+               background-color: #f2f2f2;
+               width:100vw;
+           }
+
+           header {
+               background-color: #333;
+               color: #fff;
+               text-align: center;
+               padding: 1rem;
+           }
+           p{
+             font-size:1.35rem;
+           }
+           ul{
+             font-size:1.35rem;
+           }
+
+           h1 {
+               margin-bottom: 0;
+           }
+
+           code{
+             font-size:1.35rem;
+           }
+
+           header p {
+               margin-top: 0;
+           }
+
+           section {
+               padding: 2rem;
+               background-color: #fff;
+               margin: 1rem;
+               box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+           }
+
+           section h2 {
+               color: #333;
+               margin-bottom: 1rem;
+           }
+
+           section h3 {
+               color: #555;
+               margin-bottom: 1rem;
+           }
+
+           pre {
+             color: brown;
+             background: lavender;
+               padding: 1rem;
+               border-radius: 5px;
+               overflow-x: auto;
+           }
+
+           ul {
+               list-style: none;
+               padding-left: 0;
+           }
+
+           ul li:before {
+               content: "\2022";
+               margin-right: 1rem;
+           }
+
+           footer {
+               background-color: #333;
+               color: #fff;
+               text-align: center;
+               padding: 1rem;
+           }
+
+           .container {
+               max-width: 800px;
+               margin: 0 auto;
+           }
+       </style>
+</head>
+<body>
+    <header>
+        <h1>Introduction à MySQL</h1>
+        <p>Le système de gestion de base de données open-source</p>
+    </header>
+
+    <section>
+        <h2>Qu'est-ce que MySQL ?</h2>
+        <p>MySQL est un système de gestion de base de données relationnelles (SGBDR) développé par Oracle Corporation. Il est basé sur le langage SQL (Structured Query Language) et permet aux utilisateurs de stocker, organiser et gérer leurs données de manière structurée. MySQL est largement utilisé dans les applications web, les systèmes de gestion de contenu (CMS), les applications d'e-commerce et bien d'autres.</p>
+    </section>
+
+    <section>
+        <h2>Avantages de MySQL</h2>
+        <ul>
+            <li>Open-Source: MySQL est distribué sous une licence open-source, ce qui signifie qu'il est gratuit et que les utilisateurs peuvent le modifier et le redistribuer selon leurs besoins.</li>
+            <li>Haute Performance: MySQL est connu pour ses performances élevées et sa capacité à gérer efficacement de grandes quantités de données.</li>
+            <li>Facile à utiliser: Il est relativement facile à apprendre et à utiliser, même pour les débutants en base de données.</li>
+            <li>Compatibilité multiplateforme: MySQL est compatible avec différents systèmes d'exploitation, tels que Windows, Linux et macOS.</li>
+            <li>Large communauté: Avec une large communauté d'utilisateurs et de développeurs, il est facile de trouver de l'aide, des ressources et des solutions aux problèmes rencontrés.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Création de la base de données et des tables</h2>
+        <p>Pour commencer avec MySQL, vous devez d'abord installer le logiciel. Ensuite, vous pouvez créer une base de données en utilisant la commande SQL suivante :</p>
+        <pre><code>CREATE DATABASE ma_base_de_donnees;</code></pre>
+        <p>Une fois la base de données créée, vous pouvez définir une table pour stocker vos données :</p>
+        <pre><code>USE ma_base_de_donnees;
+
+CREATE TABLE utilisateurs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    age INT,
+    email VARCHAR(100) UNIQUE
+);</code></pre>
+        <p>Cette requête crée une table "utilisateurs" avec trois colonnes : "id", "nom", "age" et "email". L'ID est une clé primaire auto-incrémentée qui sert d'identifiant unique pour chaque enregistrement.</p>
+    </section>
+
+    <section>
+        <h2>Opérations CRUD avec MySQL</h2>
+        <p>MySQL prend en charge les opérations CRUD, qui signifient Create (créer), Read (lire), Update (mettre à jour) et Delete (supprimer) :</p>
+        <ul>
+            <li>Créer des enregistrements : Pour ajouter des données à la table "utilisateurs", vous pouvez utiliser la commande INSERT INTO :</li>
+            <pre><code>INSERT INTO utilisateurs (nom, age, email) VALUES ('Alice', 25, 'alice@example.com');</code></pre>
+            <li>Lire des enregistrements : Pour récupérer des données de la table, vous pouvez utiliser la commande SELECT :</li>
+            <pre><code>SELECT * FROM utilisateurs;</code></pre>
+            <li>Mettre à jour des enregistrements : Pour modifier des données existantes, vous pouvez utiliser la commande UPDATE :</li>
+            <pre><code>UPDATE utilisateurs SET age = 26 WHERE nom = 'Alice';</code></pre>
+            <li>Supprimer des enregistrements : Pour supprimer des données de la table, vous pouvez utiliser la commande DELETE :</li>
+            <pre><code>DELETE FROM utilisateurs WHERE nom = 'Alice';</code></pre>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Conclusion</h2>
+        <p>MySQL est un système de gestion de base de données puissant et populaire utilisé par de nombreuses applications web. Dans ce blog, nous avons survolé les bases de MySQL, notamment la création de bases de données et de tables, ainsi que les opérations CRUD pour interagir avec les données. MySQL offre une solution fiable et performante pour stocker et gérer efficacement vos données. Si vous travaillez sur des projets web, MySQL est un outil incontournable à connaître.</p>
+    </section>
+
+    <footer>
+        <p>Tous droits réservés &copy; 2023 Mouhammed Niah</p>
+    </footer>
+</body>
+</html>

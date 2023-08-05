@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraping avec Selenium en Python</title>
+    <style>
+           body {
+               font-family: Arial, sans-serif;
+               line-height: 1.6;
+               margin: 0;
+               padding: 0;
+               background-color: #f2f2f2;
+               width:100vw;
+           }
+
+           header {
+               background-color: #333;
+               color: #fff;
+               text-align: center;
+               padding: 1rem;
+           }
+           p{
+             font-size:1.35rem;
+           }
+           ul{
+             font-size:1.35rem;
+           }
+
+           h1 {
+               margin-bottom: 0;
+           }
+
+           header p {
+               margin-top: 0;
+           }
+
+           section {
+               padding: 2rem;
+               background-color: #fff;
+               margin: 1rem;
+               box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+           }
+
+           section h2 {
+               color: #333;
+               margin-bottom: 1rem;
+           }
+
+           section h3 {
+               color: #555;
+               margin-bottom: 1rem;
+           }
+
+           pre {
+             color: brown;
+             background: lavender;
+               padding: 1rem;
+               border-radius: 5px;
+               overflow-x: auto;
+           }
+
+           ul {
+               list-style: none;
+               padding-left: 0;
+           }
+
+           ul li:before {
+               content: "\2022";
+               margin-right: 1rem;
+           }
+
+           footer {
+               background-color: #333;
+               color: #fff;
+               text-align: center;
+               padding: 1rem;
+           }
+
+           .container {
+               max-width: 800px;
+               margin: 0 auto;
+           }
+       </style>
+</head>
+
+<body>
+    <header>
+        <h1>Web Scraping avec Selenium en Python</h1>
+        <p>Par Mouhammed Niah</p>
+    </header>
+
+    <div class="container-fluid">
+        <section>
+            <h2>Introduction au web scraping avec Selenium</h2>
+            <p>Le web scraping est une technique utilisée pour extraire des données à partir de sites web de manière
+                automatisée. Dans cet article, nous allons découvrir comment réaliser du web scraping en utilisant Selenium,
+                un outil puissant et flexible qui nous permettra de contrôler un navigateur web et d'interagir avec les pages
+                pour extraire les informations qui nous intéressent.</p>
+        </section>
+
+        <section>
+            <h2>Présentation de Selenium</h2>
+            <p>Selenium est une suite d'outils logiciels qui permet d'automatiser les interactions avec un navigateur web. Il
+                est principalement utilisé pour effectuer des tests automatisés sur des applications web, mais il peut aussi
+                être utilisé pour le web scraping. La version en Python de Selenium offre une API conviviale qui permet de
+                contrôler facilement le navigateur et de simuler des actions humaines telles que le clic, la saisie de texte et
+                la soumission de formulaires.</p>
+        </section>
+
+        <section>
+            <h2>Préparation de l'environnement</h2>
+            <p>Avant de commencer le web scraping avec Selenium en Python, vous aurez besoin de :</p>
+            <ol>
+                <li>Installer Python : Téléchargez et installez Python à partir du site officiel <a href="https://www.python.org/downloads/" target="_blank">https://www.python.org/downloads/</a>.</li>
+                <li>Installer Selenium : Ouvrez une fenêtre de terminal ou d'invite de commande et exécutez la commande suivante pour installer Selenium à l'aide de pip (le gestionnaire de packages de Python) :</li>
+            </ol>
+            <pre>pip install selenium</pre>
+            <p>Assurez-vous également d'installer le navigateur WebDriver adapté au navigateur que vous souhaitez utiliser (par
+                exemple, Chrome, Firefox, etc.). Les liens de téléchargement et les instructions d'installation des WebDriver
+                peuvent être trouvés sur les sites officiels de chaque navigateur.</p>
+            <p>Une fois que vous avez configuré l'environnement, vous êtes prêt à commencer le web scraping avec Selenium en Python !</p>
+        </section>
+
+        <section>
+            <h2>Utilisation de Selenium pour le web scraping</h2>
+            <p>Selenium offre une variété de méthodes pour interagir avec les éléments d'une page web, telles que
+                <code>find_element_by_id</code>, <code>find_element_by_name</code>, <code>find_element_by_xpath</code> et
+                bien d'autres. Vous pouvez également utiliser des sélecteurs CSS pour trouver des éléments spécifiques.</p>
+            <p>Voici un exemple de code pour charger une page web, saisir du texte dans un champ de recherche, cliquer sur un
+                bouton et extraire les résultats :</p>
+            <pre>
+import json
+import time
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+
+urls = [
+    {'url': 'https://www.example.com', 'ville': 'ExempleVille1'},
+    {'url': 'https://www.example.com', 'ville': 'ExempleVille2'},
+    # Ajoutez d'autres URLs ici
+]
+
+data = []
+
+# Votre code de scraping ici
+for url_info in urls:
+    url = url_info['url']
+    ville = url_info['ville']
+    driver = webdriver.Firefox(options=chrome_options)
+    driver.get(url)
+    time.sleep(10)
+
+    # Attendre que la page se charge
+    time.sleep(5)
+
+    wait = WebDriverWait(driver, 10)
+
+    elements = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".kzGk-resultInner")))
+
+    for element in elements:
+        dicti = {}
+        dicti['Ville'] = ville
+        dicti['prix'] = element.find_element(By.CSS_SELECTOR, ".zV27-price").text
+        dicti['NomHotel'] = element.find_element(By.CSS_SELECTOR, ".FLpo-big-name").text
+        dicti['Note'] = element.find_element(By.CSS_SELECTOR, ".FLpo-score-description").text
+
+        # Vérifier si l'élément de localisation est présent avant de l'extraire
+        try:
+            dicti['localisation'] = element.find_element(By.CSS_SELECTOR, ".FLpo-location-name").text
+        except :
+            dicti['localisation'] = "N/A"
+
+        dicti['image'] = element.find_element(By.CSS_SELECTOR, ".e9fk-photo").get_attribute("src")
+        data.append(dicti)
+
+    driver.quit()
+
+with open('dataNormal.json', 'w') as f:
+    json.dump(data, f)
+</pre>
+            <p>Cet exemple montre comment utiliser Selenium pour automatiser le processus de recherche sur un site web et
+                extraire les résultats. Vous pouvez adapter ce code à vos besoins spécifiques pour extraire les informations
+                dont vous avez besoin à partir de n'importe quel site web.</p>
+        </section>
+
+        <section>
+                 <h2>Cas d'utilisation et exemples</h2>
+                 <p>Le web scraping avec Selenium peut être utilisé dans divers cas, tels que :</p>
+                 <ul>
+                     <li>Collecte de données sur les hôtels, les produits, les offres, etc., à partir de sites de comparaison de
+                         prix.</li>
+                     <li>Extraction d'informations de sites d'actualités pour l'analyse de tendances.</li>
+                     <li>Récupération de données sur les réseaux sociaux pour l'analyse des sentiments.</li>
+                     <li>Surveillance des prix et des stocks des produits sur des sites d'e-commerce.</li>
+                     <li>Collecte de données pour l'analyse concurrentielle.</li>
+                 </ul>
+                 <p>Les possibilités sont illimitées et dépendent de vos besoins spécifiques.</p>
+                 <!-- Exemples de cas d'utilisation -->
+             </section>
+
+             <section>
+                 <h2>Bonnes pratiques et considérations</h2>
+                 <p>Lorsque vous utilisez Selenium pour le web scraping, voici quelques bonnes pratiques à garder à l'esprit :</p>
+                 <ul>
+                     <li>Respectez les conditions d'utilisation des sites web que vous scrapez. Certains sites interdisent le
+                         scraping dans leurs conditions d'utilisation, alors assurez-vous de vérifier avant de commencer.</li>
+                     <li>Utilisez des délais appropriés pour éviter de surcharger les serveurs du site web. Attendez que la page se
+                         charge complètement avant de rechercher les éléments.</li>
+                     <li>Évitez de scraper trop fréquemment le même site pour ne pas être bloqué ou banni par le site.</li>
+                     <li>Utilisez les sélecteurs CSS et les noms d'attributs spécifiques pour cibler les éléments, car les sélecteurs
+                         basés sur les classes peuvent changer.</li>
+                     <li>Nettoyez et traitez les données extraites pour les rendre exploitables.</li>
+                 </ul>
+                 <p>En suivant ces bonnes pratiques, vous pouvez éviter les problèmes juridiques et techniques liés au web scraping et
+                     obtenir des données de manière efficace et responsable.</p>
+                 <!-- Autres considérations importantes -->
+             </section>
+
+             <section>
+                 <h2>Conclusion</h2>
+                 <p>Le web scraping avec Selenium en Python est un outil puissant pour extraire des données à partir de sites web de
+                     manière automatisée. Grâce à Selenium, vous pouvez contrôler un navigateur web, interagir avec les pages et
+                     extraire les informations qui vous intéressent.</p>
+                 <p>Cependant, il est important de respecter les règles et les conditions d'utilisation des sites web et de scraper de
+                     manière responsable pour éviter tout problème juridique ou technique.</p>
+                 <p>En utilisant les bonnes pratiques et en faisant preuve de prudence, vous pouvez tirer parti du web scraping pour
+                     obtenir des données précieuses et mener des analyses approfondies pour votre travail ou vos projets.</p>
+                 <!-- Résumé des points importants -->
+             </section>
+
+             <section>
+                 <h2>Ressources supplémentaires</h2>
+                 <p>Voici quelques ressources supplémentaires pour approfondir vos connaissances sur le web scraping avec Selenium en
+                     Python :</p>
+                 <ul>
+                     <li><a href="https://selenium-python.readthedocs.io/" target="_blank">Documentation officielle de Selenium
+                             pour Python</a></li>
+                     <li><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank">Documentation de
+                             BeautifulSoup (pour l'analyse HTML)</a></li>
+                     <li><a href="https://www.w3schools.com/css/" target="_blank">Tutoriel sur les sélecteurs CSS</a></li>
+                     <li><a href="https://www.scrapingbee.com/blog/selenium-python-tutorial/" target="_blank">Tutoriel complet
+                             sur le web scraping avec Selenium en Python</a></li>
+                 </ul>
+             </section>
+
+    </div>
+
+    <footer>
+        <p>Tous droits réservés &copy; 2023 Mouhammed Niah</p>
+    </footer>
+</body>
+
+</html>
