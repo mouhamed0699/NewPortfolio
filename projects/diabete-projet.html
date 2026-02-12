@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthèse de Projet | Détection Diabète</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/diabete.css">
+</head>
+<body>
+
+    <header class="ds-hero-project">
+        <div class="container">
+            <a href="data-science.html" class="ds-back-link"><i class="fas fa-arrow-left"></i> Retour au Portfolio</a>
+            <span class="ds-badge">Rapport d'Analyse</span>
+            <h1>Intelligence Artificielle & <br><span class="text-gradient">Diagnostic de Santé.</span></h1>
+            <p class="lead">Résumé exécutif de l'étude prédictive sur les marqueurs biologiques du diabète.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="summary-section">
+            <h2><i class="fas fa-database"></i> 1. État des Lieux des Données</h2>
+            <p>L'analyse repose sur un échantillon de <strong>768 observations</strong> cliniques. Chaque profil est défini par 8 variables biométriques fondamentales :</p>
+            <div class="data-list">
+                <ul>
+                    <li><strong>Facteurs Métaboliques :</strong> Glucose, Insuline, IMC (BMI).</li>
+                    <li><strong>Antécédents & Physique :</strong> Nombre de grossesses, Épaisseur du pli cutané, Âge.</li>
+                    <li><strong>Indicateurs de Santé :</strong> Tension artérielle et fonction génétique du diabète (Pedigree Function).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="summary-section">
+            <h2><i class="fas fa-microscope"></i> 2. Approche Méthodologique</h2>
+            <p>Le projet suit une rigueur scientifique pour garantir la fiabilité des prédictions :</p>
+            <div class="process-grid">
+                <div class="process-item">
+                    <h4>Nettoyage</h4>
+                    <p>Traitement des données manquantes et correction des valeurs aberrantes détectées lors de l'exploration initiale.</p>
+                </div>
+                <div class="process-item">
+                    <h4>Standardisation</h4>
+                    <p>Mise à l'échelle des variables (StandardScaler) pour harmoniser les unités de mesure disparates.</p>
+                </div>
+                <div class="process-item">
+                    <h4>Modélisation</h4>
+                    <p>Déploiement d'un pipeline complexe associant <strong>Polynomial Features</strong> et l'algorithme <strong>K-Nearest Neighbors (KNN)</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="summary-section">
+            <h2><i class="fas fa-clipboard-check"></i> 3. Résultats & Conclusions</h2>
+            <div class="results-box">
+                <p>Le modèle final atteint une <strong>efficacité prédictive de 83.11%</strong>. </p>
+                <p>L'étude démontre une convergence claire entre la taille de l'échantillon d'entraînement et la précision de la validation croisée, confirmant la robustesse de l'algorithme face aux nouveaux profils patients.</p>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h3>Approfondir l'Analyse technique</h3>
+                    <p>Pour consulter le code Python complet, les matrices de confusion et les courbes d'apprentissage détaillées, veuillez explorer le rapport officiel.</p>
+                </div>
+                <a href="../assets/Resultats de test diabetique.pdf" target="_blank" class="btn-primary">
+                    <i class="fas fa-file-pdf"></i> Explorer le document complet
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="ds-footer">
+        <p>Projet Data Science • Analyse de Classification • 2024</p>
+    </footer>
+
+</body>
+</html>

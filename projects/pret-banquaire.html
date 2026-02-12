@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthèse de Projet | Octroi de Prêt Bancaire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/pret-banque.css">
+</head>
+<body>
+
+    <header class="ds-hero-project">
+        <div class="container">
+            <a href="data-science.html" class="ds-back-link"><i class="fas fa-arrow-left"></i> Retour au Portfolio</a>
+            <span class="ds-badge">Credit Scoring & Finance</span>
+            <h1>Analyse des États de <br><span class="text-gradient">Prêt Bancaire.</span></h1>
+            <p class="lead">Automatisation du processus de décision de crédit par l'analyse des profils de solvabilité des emprunteurs.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="summary-section">
+            <h2><i class="fas fa-file-invoice-dollar"></i> 1. Exploration du Profil Emprunteur</h2>
+            <p>L'étude repose sur une base de données bancaires visant à prédire le <strong>Loan_Status</strong> (Approbation ou Refus). L'analyse de forme a permis d'identifier les piliers du profil client :</p>
+            <div class="data-list">
+                <ul>
+                    <li><strong>Revenus :</strong> ApplicantIncome et CoapplicantIncome (revenus cumulés du foyer).</li>
+                    <li><strong>Historique de Crédit :</strong> La variable <em>Credit_History</em> s'est révélée être le facteur déterminant majeur.</li>
+                    <li><strong>Détails du Prêt :</strong> Analyse du montant (LoanAmount) et de la durée du crédit.</li>
+                    <li><strong>Profil Social :</strong> État matrimonial, niveau d'étude et situation professionnelle (Self_Employed).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="summary-section">
+            <h2><i class="fas fa-broom"></i> 2. Nettoyage & Transformation</h2>
+            <p>Le dataset présentait des défis structurels nécessitant une préparation rigoureuse avant modélisation :</p>
+            <div class="process-grid">
+                <div class="process-item">
+                    <h4>Filtrage</h4>
+                    <p>Suppression des variables non-significatives (Loan_ID) pour concentrer l'apprentissage sur les facteurs de risque.</p>
+                </div>
+                <div class="process-item">
+                    <h4>Gestion des NaNs</h4>
+                    <p>Traitement des valeurs manquantes par suppression ciblée pour garantir l'intégrité statistique du modèle final.</p>
+                </div>
+                <div class="process-item">
+                    <h4>Encodage</h4>
+                    <p>Transformation des variables catégorielles (Sexe, Marié, Statut du prêt) en formats numériques exploitables (0/1).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="summary-section">
+            <h2><i class="fas fa-user-check"></i> 3. Performance de la Régression Logistique</h2>
+            <div class="results-box">
+                <p>Pour ce problème de classification binaire, l'algorithme de <strong>Régression Logistique</strong> a été privilégié pour sa transparence et son efficacité.</p>
+                <p>Le modèle final permet d'automatiser la validation des dossiers avec un niveau de précision optimal, réduisant ainsi les délais de traitement des demandes de crédit.</p>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h3>Explorer le modèle de scoring</h3>
+                    <p>Consultez les visualisations de données (Seaborn), l'implémentation Scikit-learn et les détails des coefficients de régression.</p>
+                </div>
+                <a href="../assets/Banque.pdf" target="_blank" class="btn-primary">
+                    <i class="fas fa-file-pdf"></i> Ouvrir le rapport Banque
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="ds-footer">
+        <p>Projet Machine Learning • Scoring Bancaire • 2024</p>
+    </footer>
+
+</body>
+</html>

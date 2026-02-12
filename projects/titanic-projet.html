@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthèse de Projet | Survie du Titanic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/titanic.css">
+</head>
+<body>
+
+    <header class="ds-hero-project">
+        <div class="container">
+            <a href="data-science.html" class="ds-back-link"><i class="fas fa-arrow-left"></i> Retour au Portfolio</a>
+            <span class="ds-badge">Classification & Analyse de Forme</span>
+            <h1>Analyse de Survie du <br><span class="text-gradient">Titanic.</span></h1>
+            <p class="lead">Exploration des facteurs déterminants et modélisation prédictive de la survie des passagers.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="summary-section">
+            <h2><i class="fas fa-ship"></i> 1. Exploration du Dataset</h2>
+            <p>L'étude porte sur <strong>891 passagers</strong> avec une analyse rigoureuse de la structure des données (type quantitatif et qualitatif) :</p>
+            <div class="data-list">
+                <ul>
+                    <li><strong>Variables Clés :</strong> Pclass (Classe), Sex, Age, SibSp/Parch (Famille), Fare (Tarif).</li>
+                    <li><strong>Analyse de Survie :</strong> Le taux de survie global observé est de <strong>38%</strong>.</li>
+                    <li><strong>Gestion des Manquants :</strong> Traitement critique des colonnes <em>Age</em> (20% manquants) et <em>Deck</em> (77% manquants).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="summary-section">
+            <h2><i class="fas fa-cogs"></i> 2. Pipeline de Modélisation</h2>
+            <p>Une stratégie multi-modèles a été déployée pour identifier l'algorithme le plus performant :</p>
+            <div class="process-grid">
+                <div class="process-item">
+                    <h4>Ingénierie</h4>
+                    <p>Utilisation de <strong>Polynomial Features</strong> et <strong>StandardScaler</strong> pour enrichir les relations entre variables.</p>
+                </div>
+                <div class="process-item">
+                    <h4>Benchmark</h4>
+                    <p>Comparaison systématique : KNN, SVC, Decision Tree, SGD et Random Forest.</p>
+                </div>
+                <div class="process-item">
+                    <h4>Optimisation</h4>
+                    <p>Recherche d'hyperparamètres pour maximiser la généralisation sur les données de test.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="summary-section">
+            <h2><i class="fas fa-chart-line"></i> 3. Performances & Insights</h2>
+            <div class="results-box">
+                <p>Le modèle <strong>Random Forest</strong> s'est imposé comme la solution la plus robuste avec une précision d'environ <strong>83.22%</strong>.</p>
+                <p>L'analyse confirme que le sexe et la classe sociale (Pclass) étaient les prédicteurs les plus influents dans la probabilité de survie.</p>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h3>Consulter l'étude complète</h3>
+                    <p>Accédez au code source, aux matrices de corrélation et à l'analyse approfondie des variables catégorielles.</p>
+                </div>
+                <a href="../assets/titanic.pdf" target="_blank" class="btn-primary">
+                    <i class="fas fa-file-pdf"></i> Ouvrir le rapport PDF
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="ds-footer">
+        <p>Projet Machine Learning • Classification Binaire • 2024</p>
+    </footer>
+
+</body>
+</html>

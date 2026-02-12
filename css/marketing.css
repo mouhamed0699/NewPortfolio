@@ -1,0 +1,230 @@
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary: #ff4757;        /* Corail Marketing */
+    --primary-dark: #e84118;
+    --secondary: #2f3542;      /* Gris Anthracite */
+    --accent: #ffa502;         /* Orange Énergie */
+    --bg-light: #f1f2f6;       /* Fond de page */
+    --white: #ffffff;
+    --text-main: #2f3542;
+    --text-muted: #747d8c;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================================
+   HERO SECTION (MARKETING)
+   ========================================= */
+.hero-projects {
+    padding: 100px 0 60px;
+    background: linear-gradient(135deg, #fff 0%, #ffeef0 100%);
+    border-bottom: 1px solid rgba(255, 71, 87, 0.1);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 25px;
+    transition: var(--transition);
+}
+
+.back-link:hover {
+    color: var(--primary);
+    transform: translateX(-5px);
+}
+
+.badge.marketing {
+    background: rgba(255, 71, 87, 0.1);
+    color: var(--primary);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 20px 0;
+    line-height: 1.2;
+}
+
+.text-gradient-mkt {
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+}
+
+/* =========================================
+   GRILLE DE PROJETS
+   ========================================= */
+.projects-section {
+    padding: 80px 0;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
+}
+
+/* IMAGE DU PROJET */
+.card-img-container {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.project-card:hover .card-img-container img {
+    transform: scale(1.1);
+}
+
+/* CONTENU DE LA CARTE */
+.card-body {
+    padding: 30px;
+    position: relative;
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    position: absolute;
+    top: -25px;
+    left: 30px;
+    border: 4px solid var(--white);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card-body h3 {
+    font-size: 1.4rem;
+    margin: 15px 0 10px;
+    font-weight: 700;
+}
+
+.card-body p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+/* TAGS TECHNIQUES */
+.tech-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.tech-tags span {
+    background: #f1f2f6;
+    color: #57606f;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* BOUTON TEXTE */
+.btn-text {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.btn-text i {
+    transition: var(--transition);
+}
+
+.project-card:hover .btn-text i {
+    transform: translateX(5px);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-projects {
+        padding: 60px 0;
+        text-align: center;
+    }
+
+    .hero-content p {
+        margin: 0 auto;
+    }
+}

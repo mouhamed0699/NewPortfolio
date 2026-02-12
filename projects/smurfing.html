@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Fraude Bancaire | SQL & Conformité</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/smurfing.css">
+</head>
+<body>
+
+    <header class="fraud-hero">
+        <div class="container">
+            <a href="../projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour aux projets</a>
+            <span class="badge-fraud">Investigation SQL Avancée</span>
+            <h1>Data & Conformité : <br><span class="text-gradient">Traquer la Fraude avec SQL</span></h1>
+            <p class="lead">Détection du "Smurfing" et optimisation de performance sur les flux transactionnels bancaires.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="fraud-section">
+            <div class="problem-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Le défi du "Smurfing" (Fractionnement)</h3>
+                <p>Le Smurfing consiste à fractionner des dépôts pour contourner les seuils de vigilance de la <strong>BCEAO</strong>. En multipliant les petites transactions dans différentes agences (Dakar, Thiès, St-Louis...), les fraudeurs tentent de rester "sous le radar" des systèmes de surveillance classiques.</p>
+            </div>
+        </section>
+
+        <div class="stepper">
+            
+            <div class="step">
+                <div class="step-header">
+                    <span class="step-num">01</span>
+                    <h3>La Fondation : Modélisation des données</h3>
+                </div>
+                <div class="step-content">
+                    <div class="text">
+                        <p>Tout part d'une donnée structurée. J'ai modélisé un flux de transactions réaliste incluant les montants en FCFA, les dates et les localisations d'agences à travers le Sénégal.</p>
+                    </div>
+                    <div class="image-box">
+                        <img src="../images/fraude1.jfif" alt="Modélisation SQL">
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <span class="step-num">02</span>
+                    <h3>Diagnostic & Optimisation de Performance</h3>
+                </div>
+                <div class="step-content">
+                    <div class="image-grid">
+                        <div class="img-wrap">
+                            <span class="img-label label-red">AVANT : Inefficace</span>
+                            <img src="../images/fraude2.jfif" alt="Scan de table complet">
+                        </div>
+                        <div class="img-wrap">
+                            <span class="img-label label-green">APRÈS : Indexé</span>
+                            <img src="../images/fraude3.jfif" alt="Requête optimisée">
+                        </div>
+                    </div>
+                    <div class="text">
+                        <p>Sans optimisation, la requête examinait 640 lignes. Grâce à une <strong>indexation composite stratégique</strong>, j'ai réduit ce volume à 49 lignes, soit un gain de performance de <strong>92%</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <span class="step-num">03</span>
+                    <h3>L'Intelligence du Code : CTE & Logique Métier</h3>
+                </div>
+                <div class="step-content">
+                    <div class="text">
+                        <p>Utilisation de <strong>Common Table Expressions (CTE)</strong> pour isoler les comportements suspects : détection des clients effectuant plus de 5 dépôts/jour pour un volume dépassant 2 000 000 FCFA.</p>
+                    </div>
+                    <div class="image-box">
+                        <img src="../images/fraude4.jfif" alt="Code SQL avec CTE">
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <span class="step-num">04</span>
+                    <h3>La Preuve par le Résultat : Cibles Démasquées</h3>
+                </div>
+                <div class="step-content">
+                    <div class="image-box result-highlight-box">
+                        <span class="status-badge"><i class="fas fa-bullseye"></i> Réseaux Identifiés</span>
+                        <img src="../images/fraude5.jfif" alt="Résultats de l'enquête">
+                    </div>
+                    <div class="text">
+                        <p><strong>Mission accomplie.</strong> L'analyse a permis d'identifier deux réseaux coordonnés de blanchiment utilisant 5 agences différentes. C'est ici que la donnée devient une arme de protection financière.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <section class="vision-card">
+            <div class="vision-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Ma Vision du Data Analyst en 2024</h3>
+            <p>La Data ne sert pas seulement à produire des rapports ; elle est le premier rempart pour sécuriser notre système financier. Je suis convaincu que la Data est le levier principal pour moderniser et protéger nos écosystèmes bancaires et Fintech en Afrique. 🌍</p>
+            <div class="cta-actions">
+                <a href="https://www.linkedin.com/in/mouhammed-niah-12a476232/" target="_blank" class="btn-fraud">
+                    <i class="fab fa-linkedin"></i> Discutons sur LinkedIn
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="fraud-footer">
+        <p>© 2024 • Mouhammed Niah • Expert Data & Compliance</p>
+    </footer>
+
+</body>
+</html>

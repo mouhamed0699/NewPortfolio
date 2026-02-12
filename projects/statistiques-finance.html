@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Pro | Statistique & Finance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/finance-details.css">
+</head>
+<body>
+
+    <div id="image-overlay" class="overlay">
+        <span class="close-overlay">&times;</span>
+        <img class="overlay-content" id="img-expanded">
+        <div id="caption"></div>
+    </div>
+
+    <header class="top-nav">
+        <div class="container-wide">
+            <a href="finance.html" class="back-link"><i class="fas fa-chevron-left"></i> Portfolio</a>
+            <div class="date-tag">ANALYSE QUANTITATIVE • 2026</div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container-wide">
+                <div class="hero-grid">
+                    <div class="hero-main">
+                        <span class="badge-tech">Quantitative Research</span>
+                        <h1>Intelligence <br><span class="gradient-text">Statistique.</span></h1>
+                        <p class="lead">Décoder la complexité des marchés à travers la modélisation mathématique et l'analyse de données macroéconomiques.</p>
+                    </div>
+                    <div class="hero-kpi">
+                        <div class="mdd-card">
+                            <label>Maximum Drawdown</label>
+                            <div class="val">-176.33%</div>
+                            <p>Intensité maximale de la baisse historique constatée.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="data-definition">
+            <div class="container">
+                <div class="intro-header">
+                    <h2><i class="fas fa-database"></i> Architecture des Données</h2>
+                    <p>Avant l'analyse, il est crucial de définir les métriques extraites de notre dataset financier.</p>
+                </div>
+                
+                <div class="variable-grid">
+                    <div class="var-item">
+                        <span class="var-name">Log-Rendements ($r_t$)</span>
+                        <p>Calculés par $\ln(P_t / P_{t-1})$. Ils permettent de normaliser les variations de prix et d'assurer l'additivité des performances.</p>
+                    </div>
+                    <div class="var-item">
+                        <span class="var-name">GDP Growth</span>
+                        <p>Taux de croissance du Produit Intérieur Brut, utilisé comme proxy de la santé économique globale.</p>
+                    </div>
+                    <div class="var-item">
+                        <span class="var-name">Inflation Rate</span>
+                        <p>Mesure de l'érosion du pouvoir d'achat, impactant directement les taux d'actualisation des actifs.</p>
+                    </div>
+                    <div class="var-item">
+                        <span class="var-name">Interest Rate (%)</span>
+                        <p>Le coût du capital. C'est la variable pivot qui influence l'arbitrage entre actifs risqués et sans risque.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container-wide">
+                <div class="split-row">
+                    <div class="text-content">
+                        <span class="chapter">01</span>
+                        <h2>Distribution <br>des Rendements</h2>
+                        <p>Cette visualisation permet de détecter les <strong>Fat Tails</strong> (queues épaisses). Une distribution qui s'écarte de la loi normale signale un risque accru d'événements "Cygne Noir".</p>
+                        <div class="stat-capsules">
+                            <div class="cap"><strong>0.017</strong> Skewness</div>
+                            <div class="cap"><strong>-0.41</strong> Kurtosis</div>
+                        </div>
+                    </div>
+                    <div class="visual-content">
+                        <div class="img-wrapper">
+                            <img src="../images/rendement log.png" alt="Distribution des Log-Rendements" class="zoomable">
+                            <span class="img-label">Histogramme de fréquence</span>
+                        </div>
+                        <div class="img-wrapper">
+                            <img src="../images/volatilite rendement.png" alt="Évolution de la Volatilité" class="zoomable">
+                            <span class="img-label">Volatilité glissante (21j)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section gray-fade">
+            <div class="container-wide">
+                <div class="split-row reverse">
+                    <div class="text-content">
+                        <span class="chapter">02</span>
+                        <h2>Interdépendances <br>Macro-Financières</h2>
+                        <p>La matrice de corrélation expose la sensibilité de l'indice boursier face aux agrégats macroéconomiques. L'ajout de <strong>Lags</strong> permet d'identifier si l'économie "pilote" le marché avec un temps de retard.</p>
+                    </div>
+                    <div class="visual-content">
+                        <div class="img-wrapper large">
+                            <img src="../images/corr des rend.png" alt="Matrice de Corrélation de Pearson" class="zoomable">
+                            <span class="img-label">Matrice de corrélation thermique (Heatmap)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container-wide">
+                <div class="split-row">
+                    <div class="text-content">
+                        <span class="chapter">03</span>
+                        <h2>Analyse du <br>Risque de Ruine</h2>
+                        <p>Le <strong>Maximum Drawdown</strong> mesure la plus forte baisse entre un sommet et un creux. Un MDD de -176% est une alerte critique sur la survie d'une stratégie sans stop-loss.</p>
+                    </div>
+                    <div class="visual-content">
+                        <div class="img-wrapper large">
+                            <img src="../images/drowdow.png" alt="Graphique du Maximum Drawdown" class="zoomable">
+                            <span class="img-label">Courbe de drawdown temporel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-conclusion">
+            <div class="container">
+                <div class="conclusion-box">
+                    <h2>Conclusion Synthétique</h2>
+                    <div class="concl-grid">
+                        <div class="concl-item">
+                            <h4>Efficience du Marché</h4>
+                            <p>L'analyse des corrélations suggère une efficience semi-forte : les variables macroéconomiques sont intégrées rapidement, mais des poches d'inefficience subsistent sur les décalages de court terme.</p>
+                        </div>
+                        <div class="concl-item">
+                            <h4>Gestion des Risques</h4>
+                            <p>La Kurtosis négative indique un profil "Platykurtique" : moins de krachs extrêmes que prévu par la théorie, mais une volatilité de base plus persistante.</p>
+                        </div>
+                        <div class="concl-item full">
+                            <h4>Recommandation Finale</h4>
+                            <p>Ce modèle démontre qu'une approche purement statistique permet d'identifier les zones de danger (MDD) bien avant qu'elles n'impactent le capital. L'étape suivante serait l'implémentation d'un modèle de Machine Learning type LSTM pour la prédiction de séries temporelles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2026 • Design & Analyse Quantitative • Python Ecosystem</p>
+    </footer>
+
+    <script>
+        const overlay = document.getElementById('image-overlay');
+        const expandedImg = document.getElementById('img-expanded');
+        const captionText = document.getElementById('caption');
+        const zoomables = document.querySelectorAll('.zoomable');
+        const closeBtn = document.querySelector('.close-overlay');
+
+        zoomables.forEach(img => {
+            img.onclick = function() {
+                overlay.style.display = "flex";
+                expandedImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+        });
+
+        closeBtn.onclick = function() { overlay.style.display = "none"; }
+        overlay.onclick = function(e) { if(e.target !== expandedImg) overlay.style.display = "none"; }
+    </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+    --bg-color: #10121b;       /* Fond sombre profond */
+    --card-bg: #191d2b;       /* Fond des cartes et sections */
+    --accent: #00d4ff;        /* Bleu néon pour les titres/icônes */
+    --text-main: #e2e8f0;     /* Texte principal (gris très clair) */
+    --text-muted: #94a3b8;    /* Texte secondaire */
+    --white: #ffffff;
+    --border: #2d3446;
+    
+    /* Typographies */
+    --font-titles: 'Inter', sans-serif;
+    --font-body: 'Merriweather', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.8;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   CONTENEUR PRINCIPAL
+   ========================================= */
+.blog-container {
+    max-width: 800px; /* Largeur idéale pour la lecture d'articles */
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+/* =========================================
+   HEADER (Titre & Meta)
+   ========================================= */
+.blog-header {
+    text-align: left;
+    margin-bottom: 60px;
+}
+
+.back-home {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--font-titles);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 40px;
+    transition: transform 0.3s ease;
+}
+
+.back-home:hover {
+    transform: translateX(-5px);
+}
+
+.blog-category {
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 2px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    font-family: var(--font-titles);
+    margin-bottom: 15px;
+}
+
+.blog-header h1 {
+    font-family: var(--font-titles);
+    font-size: clamp(2rem, 5vw, 2.8rem); /* Taille fluide */
+    line-height: 1.2;
+    margin-bottom: 25px;
+    font-weight: 800;
+    color: var(--white);
+}
+
+.blog-meta {
+    color: var(--text-muted);
+    font-family: var(--font-titles);
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+}
+
+/* =========================================
+   CONTENU DE L'ARTICLE
+   ========================================= */
+.blog-content {
+    font-size: 1.15rem;
+}
+
+/* Carte d'introduction */
+.intro-card {
+    background: var(--card-bg);
+    padding: 35px;
+    border-radius: 16px;
+    border-left: 4px solid var(--accent);
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.intro-card h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+/* Sections de contenu */
+.content-section {
+    margin-bottom: 45px;
+}
+
+h2 {
+    font-family: var(--font-titles);
+    font-size: 1.7rem;
+    margin: 40px 0 20px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+h2 i {
+    font-size: 1.4rem;
+    opacity: 0.8;
+}
+
+p {
+    margin-bottom: 25px;
+}
+
+/* Listes */
+ul {
+    margin-bottom: 30px;
+    padding-left: 10px;
+    list-style: none; /* On retire les puces par défaut */
+}
+
+li {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 25px;
+}
+
+/* Custom Bullet Points */
+li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+li strong {
+    color: var(--white);
+    font-family: var(--font-titles);
+}
+
+/* =========================================
+   CONCLUSION & FOOTER
+   ========================================= */
+.blog-conclusion {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-top: 60px;
+}
+
+.blog-conclusion h2 {
+    color: var(--white);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .blog-container {
+        padding: 40px 20px;
+    }
+
+    .blog-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .intro-card {
+        padding: 25px;
+    }
+
+    .blog-content {
+        font-size: 1.1rem;
+    }
+}

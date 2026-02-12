@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Bancaire Complet · SQL Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0A4B6E; --secondary: #1E6F5C; --accent: #479c9c;
+      --bg: #f4f7f9; --card-bg: #ffffff; --sql-bg: #0b2a34;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      background: var(--bg); font-family: 'Inter', sans-serif; 
+      color: #1a3646; line-height: 1.5; padding: 2rem 1rem;
+    }
+    .container { max-width: 1440px; margin: 0 auto; }
+    
+    /* Header */
+    header { margin-bottom: 2rem; border-bottom: 4px solid var(--primary); padding-bottom: 1rem; }
+    h1 { font-size: 2.2rem; color: var(--primary); display: flex; align-items: center; gap: 12px; }
+    .intro { margin-top: 10px; padding: 1rem; background: #e9f2f5; border-radius: 8px; font-size: 0.95rem; }
+
+    /* Dashboard Grid */
+    .dashboard { 
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); 
+      gap: 20px; align-items: start;
+    }
+
+    /* Card Design - Optimized for speed */
+    .card { 
+      background: var(--card-bg); border-radius: 16px; padding: 1.5rem; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #d1d9e0;
+    }
+    .card h2 { font-size: 1.2rem; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+    
+    .comment { background: #f0f7f4; padding: 0.8rem; border-left: 4px solid var(--secondary); border-radius: 4px; font-size: 0.88rem; margin-bottom: 1rem; }
+
+    /* SQL Block */
+    .sql { 
+      background: var(--sql-bg); color: #e1f0f0; padding: 1rem; border-radius: 8px; 
+      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; margin-bottom: 1rem; overflow-x: auto;
+    }
+
+    /* Tables */
+    .res-container { max-height: 250px; overflow: auto; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 1rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    th { position: sticky; top: 0; background: var(--primary); color: white; padding: 8px; text-align: left; }
+    td { padding: 8px; border-bottom: 1px solid #edf2f7; }
+    tr:nth-child(even) { background: #f8fafc; }
+
+    /* Highlights */
+    .badge { padding: 4px 10px; border-radius: 12px; background: var(--accent); color: white; font-size: 0.75rem; font-weight: 600; }
+    .neg { color: #dc2626; font-weight: bold; }
+    
+    @media (max-width: 600px) { .dashboard { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1><i class="fas fa-file-invoice-dollar"></i> Audit Bancaire & SQL Analytics</h1>
+    <div class="intro">
+      <strong>Objectif :</strong> Rapprochement entre <code>external_statement</code> (Banque) et <code>internal_ledger</code> (Comptabilité). 
+      Détection d'anomalies, doublons et écarts de solde de -11M€.
+    </div>
+  </header>
+
+  <div class="dashboard">
+
+    <div class="card">
+      <h2><i class="fas fa-database"></i> 1. Schéma et Exploration</h2>
+      <div class="comment">Vérification initiale de la structure des tables et des types de données.</div>
+      <div class="sql">DESCRIBE external_statement;</div>
+      <div class="res-container">
+        <table>
+          <thead><tr><th>Field</th><th>Type</th><th>Null</th><th>Default</th></tr></thead>
+          <tbody>
+            <tr><td>ext_id</td><td>varchar(10)</td><td>YES</td><td>NULL</td></tr>
+            <tr><td>amount_ext</td><td>decimal(15,2)</td><td>YES</td><td>NULL</td></tr>
+            <tr><td>val_date</td><td>date</td><td>YES</td><td>NULL</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="sql">DESCRIBE internal_ledger;</div>
+      <div class="res-container">
+        <table>
+          <thead><tr><th>Field</th><th>Type</th><th>Key</th></tr></thead>
+          <tbody>
+            <tr><td>trans_id</td><td>varchar(10)</td><td></td></tr>
+            <tr><td>account_no</td><td>varchar(20)</td><td>MUL</td></tr>
+            <tr><td>amount</td><td>decimal(15,2)</td><td></td></tr>
+            <tr><td>trans_date</td><td>date</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-copy"></i> 2. Doublons & Signes Négatifs</h2>
+      <div class="comment">Détection des écritures redondantes et des montants négatifs (remboursements ou erreurs).</div>
+      <div class="sql">-- Doublons External<br>SELECT ext_id, amount_ext, val_date, COUNT(*) as dup <br>FROM external_statement GROUP BY 1,2,3 HAVING dup > 1;</div>
+      <div class="res-container">
+        <table>
+          <thead><tr><th>ext_id</th><th>amount_ext</th><th>val_date</th><th>dup</th></tr></thead>
+          <tbody>
+            <tr><td>T1050</td><td>58000.00</td><td>2024-01-23</td><td>2</td></tr>
+            <tr><td>T1122</td><td>120000.00</td><td>2024-02-22</td><td>2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="sql">-- Montants Négatifs<br>SELECT trans_id, amount FROM internal_ledger WHERE amount < 0;</div>
+      <div class="res-container">
+        <table>
+          <thead><tr><th>trans_id</th><th>amount</th><th>Source</th></tr></thead>
+          <tbody>
+            <tr><td>T1071</td><td class="neg">-5000.00</td><td>Interne</td></tr>
+            <tr><td>T1071</td><td class="neg">-5000.00</td><td>Externe</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-fingerprint"></i> 3. Validation des Formats</h2>
+      <div class="comment">Contrôle par REGEXP pour s'assurer que les numéros de compte sont purement numériques.</div>
+      <div class="sql">SELECT * FROM internal_ledger <br>WHERE account_no NOT REGEXP '^[0-9]+$';</div>
+      <div class="res-container">
+        <table><tbody><tr><td>✅ Aucun — 100% de conformité numérique détectée.</td></tr></tbody></table>
+      </div>
+      <span class="badge">Vérification Date NULL : 0 anomalie</span>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-exclamation-circle"></i> 4. Transactions Non-Rapprochées</h2>
+      <div class="comment">Identification des flux bancaires (151 lignes) absents de la comptabilité interne.</div>
+      <div class="sql">SELECT e.* FROM external_statement e <br>LEFT JOIN internal_ledger i ON e.ext_id = i.trans_id <br>WHERE i.trans_id IS NULL;</div>
+      <div class="res-container">
+        <table>
+          <thead><tr><th>ext_id</th><th>amount_ext</th><th>val_date</th></tr></thead>
+          <tbody>
+            <tr><td>T4</td><td>15000.00</td><td>2024-05-20</td></tr>
+            <tr><td>T1101</td><td>54000.00</td><td>2024-02-14</td></tr>
+            <tr><td>T1102</td><td>88000.00</td><td>2024-02-14</td></tr>
+            <tr><td>... (148 autres lignes)</td><td>...</td><td>...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="comment" style="background:#fff3cd">Alerte : Rupture de flux constatée à partir du 14 Février 2024.</div>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-percentage"></i> 5. Taux de Rapprochement</h2>
+      <div class="comment">Calcul du ratio de couverture comptable et identification des écarts de montant sur ID identique.</div>
+      <div class="sql">SELECT (COUNT(i.trans_id)/(SELECT COUNT(*) FROM external_statement))*100 <br>AS reconciliation_rate FROM internal_ledger i <br>JOIN external_statement e ON e.ext_id = i.trans_id;</div>
+      <div style="font-size: 1.5rem; font-weight: bold; color: var(--secondary);">41.34 %</div>
+      <div class="sql">-- Écart de montant sur T2<br>SELECT ext_id, amount_ext, amount, (amount - amount_ext) as diff <br>FROM external_statement e JOIN internal_ledger i ON e.ext_id = i.trans_id <br>WHERE amount_ext <> amount;</div>
+      <div class="res-container">
+        <table>
+          <thead><tr><th>ID</th><th>Banque</th><th>Interne</th><th>Diff</th></tr></thead>
+          <tbody><tr><td>T2</td><td>20000.00</td><td>25000.00</td><td>+5000.00</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-chart-pie"></i> 6. Statistiques par Compte</h2>
+      <div class="comment">Analyse de la concentration des fonds par numéro de compte.</div>
+      <div class="sql">SELECT account_no, SUM(amount) as total, COUNT(*) as nb <br>FROM internal_ledger GROUP BY account_no ORDER BY total DESC;</div>
+      <div class="res-container">
+        <table>
+          <thead><tr><th>Compte</th><th>Total Cumulé</th><th>Transactions</th></tr></thead>
+          <tbody>
+            <tr><td>54321</td><td>10 688 999.99</td><td>10</td></tr>
+            <tr><td>22222</td><td>9 416 000.00</td><td>10</td></tr>
+            <tr><td>33333</td><td>877 000.00</td><td>10</td></tr>
+            <tr><td>12345</td><td>864 000.00</td><td>13</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-shield-alt"></i> 7. Détection d'Outliers</h2>
+      <div class="comment">Recherche de transactions suspectes (3x supérieures à la moyenne).</div>
+      <div class="sql">SELECT trans_id, account_no, amount, trans_date <br>FROM internal_ledger WHERE amount > (SELECT AVG(amount)*3 FROM internal_ledger);</div>
+      <div class="res-container">
+        <table>
+          <thead><tr><th>ID</th><th>Compte</th><th>Montant</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>T1016</td><td>54321</td><td>9 999 999.99</td><td>Atypique</td></tr>
+            <tr><td>T1017</td><td>22222</td><td>8 800 000.00</td><td>Atypique</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-balance-scale"></i> 8. Solde Global Final</h2>
+      <div class="comment">Écart total de réconciliation (Banque vs Comptabilité).</div>
+      <div class="sql">SELECT SUM(i.amount) as Interne, SUM(e.amount_ext) as Externe, <br>SUM(i.amount)-SUM(e.amount_ext) as Diff <br>FROM external_statement e LEFT JOIN internal_ledger i ON e.ext_id = i.trans_id;</div>
+      <div style="background: var(--primary); color: white; padding: 1rem; border-radius: 8px;">
+        <div style="display:flex; justify-content:space-between"><span>Total Interne:</span> 25.73 M€</div>
+        <div style="display:flex; justify-content:space-between"><span>Total Externe:</span> 36.81 M€</div>
+        <div style="display:flex; justify-content:space-between; border-top:1px solid #fff; margin-top:5px"><span>Déficit:</span> <strong style="color:#ffd966">-11.08 M€</strong></div>
+      </div>
+    </div>
+
+    <div class="card" style="grid-column: span 1;">
+      <h2><i class="fas fa-eye"></i> 9. Création de la Vue d'Audit</h2>
+      <div class="comment">Centralisation des 3 types d'anomalies pour le reporting.</div>
+      <div class="sql">
+CREATE VIEW audit_report AS<br>
+SELECT ext_id as id, 'missing_in_internal' as type FROM ...<br>
+UNION ALL<br>
+SELECT trans_id, 'amount_mismatch' FROM ...
+      </div>
+      <div class="badge">Vue opérationnelle : 153 anomalies centralisées</div>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-layer-group"></i> 10. Segmentation des Montants</h2>
+      <div class="comment">Analyse de la répartition par paliers (0-10k, 10k-50k, 50k+).</div>
+      <div class="sql">SELECT CASE ... END as interval, COUNT(*) FROM internal_ledger GROUP BY 1;</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <span class="badge" style="background:#1e40af">50k+ : 64</span>
+        <span class="badge" style="background:#3b82f6">10k-50k : 38</span>
+        <span class="badge" style="background:#93c5fd; color:#1e40af">0-10k : 2</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer style="margin-top: 3rem; text-align: center; color: #64748b; font-size: 0.85rem; padding: 2rem; border-top: 1px dashed #cbd5e1;">
+    <i class="fas fa-check-double"></i> Fin de la session d'audit SQL. Données simulées pour démonstration de compétences en contrôle interne.
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+/* RESET & BASE */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* HERO SECTION - Haute Lisibilité sur Fond Sombre */
+.hero-projects {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    padding: 100px 0;
+    text-align: center;
+    color: #ffffff;
+}
+
+.badge {
+    background: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-projects h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 20px 0;
+    color: #ffffff; /* Blanc pur pour le titre */
+}
+
+.hero-projects p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #cbd5e1; /* Gris clair pour le sous-titre */
+    line-height: 1.6;
+}
+
+/* SECTION TITLES */
+.projects-section { padding: 80px 0; }
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #3b82f6;
+}
+
+/* GRILLE & CARTES */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: #ffffff;
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #3b82f6;
+}
+
+/* IMAGES */
+.card-img-container {
+    height: 220px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .card-img-container img {
+    transform: scale(1.05);
+}
+
+/* CONTENU DE LA CARTE */
+.card-body {
+    padding: 30px;
+    position: relative;
+    flex-grow: 1;
+    background: #ffffff;
+}
+
+.card-icon {
+    position: absolute;
+    top: -30px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background: #3b82f6;
+    color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
+}
+
+.card-body h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a; /* Bleu très sombre pour le titre */
+    margin-bottom: 15px;
+}
+
+.card-body p {
+    font-size: 1rem;
+    color: #475569; /* Gris foncé pour le texte de lecture */
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn-text {
+    font-weight: 700;
+    color: #3b82f6;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    transition: gap 0.3s ease;
+}
+
+.project-card:hover .btn-text {
+    gap: 12px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero-projects h1 { font-size: 2.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+}
+
+
+/* finance*/
+
+
+/* --- HERO CATEGORY --- */
+.hero-category {
+    background-color: var(--primary); /* Le bleu nuit profond */
+    padding: 120px 0 80px;
+    text-align: center;
+    color: white;
+}
+
+.hero-category .badge {
+    background: rgba(59, 130, 246, 0.2);
+    color: var(--accent);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+/* --- BOUTON RETOUR --- */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 40px 0 0 40px;
+    color: var(--text-muted);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.back-link:hover { color: var(--accent); transform: translateX(-5px); }
+
+/* --- LISTE DES PROJETS --- */
+.category-projects { padding: 80px 0; background-color: var(--primary); }
+
+.project-item {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 100px;
+    color: white;
+}
+
+.project-item.reverse { flex-direction: row-reverse; }
+
+/* IMAGE DU PROJET */
+.project-image {
+    flex: 1;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.project-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-item:hover .project-image img { transform: scale(1.05); }
+
+/* CONTENU DU PROJET */
+.project-info { flex: 1; }
+
+.tech-stack {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.project-info h2 {
+    font-size: 2.2rem;
+    margin: 15px 0;
+    color: #ffffff;
+}
+
+.project-info p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.project-meta {
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #38bdf8;
+}
+
+/* BOUTON DETAILS */
+.btn-details {
+    padding: 12px 28px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-details:hover {
+    background: var(--accent);
+    box-shadow: 0 10px 20px var(--accent-glow);
+}
+
+/* RESPONSIVE */
+@media (max-width: 968px) {
+    .project-item, .project-item.reverse {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .project-image img { height: 250px; }
+}

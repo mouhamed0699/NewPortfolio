@@ -1,0 +1,196 @@
+/* Variables de design */
+:root {
+    --bg-color: #0f172a;
+    --text-color: #e2e8f0;
+    --accent: #38bdf8;
+    --secondary-text: #94a3b8;
+    --card-bg: #1e293b;
+    --font-main: 'Inter', sans-serif;
+    --font-title: 'Playfair Display', serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.8;
+    margin: 0;
+}
+
+.post-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+/* Header */
+.post-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.post-category {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+.post-header h1 {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    line-height: 1.2;
+    color: #fff;
+}
+
+.post-meta {
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Contenu */
+.post-content p {
+    margin-bottom: 25px;
+    font-size: 1.15rem;
+}
+
+/* Lettrine (Dropcap) */
+.dropcap::first-letter {
+    font-family: var(--font-title);
+    float: left;
+    font-size: 4rem;
+    line-height: 1;
+    margin-right: 12px;
+    color: var(--accent);
+    font-weight: 800;
+}
+
+h2 {
+    font-family: var(--font-title);
+    color: #fff;
+    font-size: 2rem;
+    margin: 50px 0 25px;
+}
+
+.highlight-box {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent);
+    font-style: italic;
+}
+
+blockquote {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    color: var(--accent);
+    text-align: center;
+    margin: 60px 0;
+    font-style: italic;
+    border: none;
+}
+
+/* Conclusion */
+.post-conclusion {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid #334155;
+}
+
+.question-final {
+    font-family: var(--font-title);
+    font-size: 2.2rem;
+    color: var(--accent);
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn-share {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: var(--bg-color);
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    margin: 30px auto;
+    transition: 0.3s;
+}
+
+.btn-share:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .post-header h1 { font-size: 2.2rem; }
+    blockquote { font-size: 1.4rem; }
+}
+
+
+/* Style spécifique pour l'article sur le Dev Web */
+.lead-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.4;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--card-bg);
+    padding-bottom: 20px;
+}
+
+.code-visual {
+    background: #000;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    margin: 30px 0;
+    border: 1px solid #334155;
+    position: relative;
+}
+
+.code-visual pre span { color: #64748b; }
+.code-visual::before {
+    content: "Terminal";
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--accent);
+    color: var(--bg-color);
+    padding: 2px 10px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    border-radius: 4px;
+}
+
+.interrogations-list {
+    background: rgba(56, 189, 248, 0.05);
+    padding: 30px;
+    border-radius: 12px;
+    margin: 40px 0;
+}
+
+.interrogations-list h3 {
+    margin-top: 0;
+    color: var(--accent);
+}
+
+.interrogations-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.interrogations-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-weight: 600;
+}

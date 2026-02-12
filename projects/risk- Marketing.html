@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse des Risques – Data Storytelling Bancaire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0f172a;       /* Bleu Nuit */
+            --accent: #ff4757;        /* Corail pour les risques */
+            --secondary: #0ea5e9;     /* Bleu Action */
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 15px;
+            font-weight: 400;
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 900px;
+            margin: -50px auto 60px; /* Chevauchement sur le header */
+            padding: 0 20px;
+        }
+
+        /* --- CARDS --- */
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            margin-top: 35px;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        /* --- IMAGES --- */
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        /* --- HIGHLIGHTS & LISTS --- */
+        .highlight {
+            background: #fff1f2;
+            color: var(--accent);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+        }
+
+        ul li::before {
+            content: "\f058"; /* Icon font-awesome check */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+        /* --- BUTTON --- */
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: var(--white);
+            padding: 18px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .button:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            background: #fff;
+        }
+
+        strong {
+            color: var(--primary);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .card { padding: 25px; }
+            .container { margin-top: -30px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Analyse des Risques – Data Storytelling & Performance Marketing</h1>
+    <p>Quand les données révèlent les leviers stratégiques de la conversion bancaire</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+        <p>
+            L’analyse de données n’est pas qu’une affaire de graphiques. <br> 
+            C’est avant tout une <strong>discipline d’aide à la décision</strong>.
+        </p>
+
+        <p>
+            À travers l’étude d’une campagne bancaire de dépôts à terme, plusieurs enseignements critiques 
+            émergent : saisonnalité, saturation commerciale, influence du marché et risque client. <br>
+            Ensemble, ils dessinent une trajectoire claire pour optimiser la conversion.
+        </p>
+    </div>
+
+    <h2><i class="fas fa-chart-pie"></i> Analyse visuelle : Comportements & Risques</h2>
+
+    <div class="card">
+        <img src="../images/risk-Renta-autre.jfif" alt="Graphiques analyse des risques">
+
+        <h3>🔎 Observation 1 : La saisonnalité</h3>
+        <div class="highlight">Le mois de mars dépasse 50 % de conversion :</div>
+        <ul>
+            <li>Mars : pic exceptionnel de performance</li>
+            <li>Septembre & décembre : périodes très favorables</li>
+            <li>Janvier/Février : quasiment aucune conversion</li>
+        </ul>
+        <p>
+            👉 Les décisions commerciales doivent être alignées sur ces <strong>fenêtres d’opportunité</strong>.
+        </p>
+
+        <h3>🔎 Observation 2 : Seuil critique de sollicitation</h3>
+        <div class="highlight">Au-delà de 3 appels, le taux de succès s'effondre.</div>
+        <p>
+            Les relances multiples ne créent plus de valeur, et peuvent même  
+            <strong>dégrader l’image de la marque</strong> tout en consommant du temps commercial inutile.
+        </p>
+
+        <h3>🔎 Observation 3 : Sensibilité aux taux</h3>
+        <div class="highlight">Zone optimale : Euribor entre 2,4 % et 3,3 %.</div>
+        <p>
+            Dès que les taux dépassent 4,16 %, l’attractivité du produit chute.  
+            La décision du client reste donc intimement liée au contexte économique.
+        </p>
+
+        <h3>🔎 Observation 4 : Risque d’endettement</h3>
+        <div class="highlight">Le cumul Housing + Loan → plus de 89 % de refus.</div>
+        <p>
+            Les clients sans dette active présentent un potentiel de conversion bien plus élevé.  
+            Une stratégie priorisant ces segments permet un gain immédiat en performance.
+        </p>
+    </div>
+
+    <h2><i class="fas fa-calendar-alt"></i> Analyse temporelle : Saisonnalité</h2>
+
+    <div class="card">
+        <img src="../images/saisonnalité.jfif" alt="Graphique de saisonnalité">
+
+        <p>
+            La dynamique mensuelle confirme une forte disparité.  
+            Les pics de mars, septembre, octobre et décembre montrent que le marché réagit 
+            à des <strong>moments précis de l’année</strong>.
+        </p>
+
+        <p>
+            À l’inverse, les mois d’été (mai–juillet) enregistrent une baisse notable, probablement liée 
+            à une activité commerciale et financière ralentie.
+        </p>
+    </div>
+
+    <h2><i class="fas fa-flag-checkered"></i> Conclusion</h2>
+
+    <div class="card">
+        <p>
+            Ces analyses permettent de passer d’une stratégie de volume  
+            à une <strong>stratégie de précision</strong>, basée sur quatre principes :
+        </p>
+
+        <ul>
+            <li>🎯 Cibler les bons profils</li>
+            <li>⏱ Intervenir au bon moment</li>
+            <li>📞 Limiter les sollicitations à leur seuil d’efficacité</li>
+            <li>📊 Tirer parti du contexte macroéconomique</li>
+        </ul>
+
+        <p>
+            Ce type de data storytelling permet de transformer des observations chiffrées en 
+            <strong>leviers opérationnels réels</strong>.
+        </p>
+
+        <div style="text-align: center;">
+            <a href="#" class="button"><i class="fas fa-file-pdf"></i> Voir le projet complet</a>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    © 2024 – Analyse des Risques Marketing | Projet Data & Machine Learning
+</footer>
+
+</body>
+</html>

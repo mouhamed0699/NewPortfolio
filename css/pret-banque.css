@@ -1,0 +1,904 @@
+/* data-science.css - Design Professionnel pour Analyse de Crédit */
+
+:root {
+    /* Palette financière moderne */
+    --color-primary: #0f172a;
+    --color-secondary: #334155;
+    --color-accent: #059669; /* Vert financier */
+    --color-accent-light: #10b981;
+    --color-finance: #1d4ed8; /* Bleu banque */
+    --color-risk: #dc2626; /* Rouge risque */
+    --color-light: #ffffff;
+    --color-muted: #64748b;
+    --color-border: #e2e8f0;
+    --color-surface: #f8fafc;
+    --color-chart: #dbeafe; /* Bleu graphique */
+    --color-success-light: #d1fae5; /* Vert succès clair */
+    --color-gradient-start: #059669;
+    --color-gradient-end: #1d4ed8;
+    --color-gold: #f59e0b; /* Or pour succès */
+    
+    /* Espacements harmonieux */
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1.25rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-xxl: 5rem;
+    
+    /* Typographie */
+    --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-finance: 'Montserrat', sans-serif;
+    
+    /* Bordures */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-pill: 9999px;
+    
+    /* Ombres */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --shadow-elevated: 0 20px 40px rgba(5, 150, 105, 0.1);
+    
+    /* Transitions */
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-primary);
+    background-color: var(--color-light);
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(45deg, transparent 95%, rgba(5, 150, 105, 0.02) 100%),
+        linear-gradient(-45deg, transparent 95%, rgba(29, 78, 216, 0.02) 100%);
+    background-size: 100px 100px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+/* Header / Hero Section - Thème financier */
+.ds-hero-project {
+    background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%);
+    padding: var(--space-xxl) 0;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.ds-hero-project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 90% 10%, rgba(5, 150, 105, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 10% 90%, rgba(29, 78, 216, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.ds-hero-project::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--color-accent) 0%, 
+        var(--color-finance) 50%, 
+        var(--color-accent) 100%);
+    opacity: 0.3;
+}
+
+.ds-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    text-decoration: none;
+    margin-bottom: var(--space-xl);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-pill);
+    transition: var(--transition);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--color-border);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.ds-back-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(5, 150, 105, 0.1), transparent);
+    transition: var(--transition);
+}
+
+.ds-back-link:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: translateX(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.ds-back-link:hover::before {
+    left: 100%;
+}
+
+.ds-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-finance));
+    color: var(--color-light);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--space-lg);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.ds-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: var(--transition);
+}
+
+.ds-badge:hover::after {
+    left: 100%;
+}
+
+.ds-hero-project h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-md);
+    color: var(--color-primary);
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-finance), var(--font-primary);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 6s ease infinite;
+    position: relative;
+}
+
+.text-gradient::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-gradient-start), var(--color-gradient-end));
+    border-radius: var(--radius-sm);
+    opacity: 0.2;
+}
+
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.lead {
+    font-size: 1.375rem;
+    color: var(--color-secondary);
+    max-width: 700px;
+    line-height: 1.6;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+/* Main Content */
+main {
+    padding: var(--space-xxl) 0;
+    position: relative;
+}
+
+main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+/* Summary Sections */
+.summary-section {
+    margin-bottom: var(--space-xxl);
+    padding: var(--space-xl);
+    background-color: var(--color-light);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.summary-section:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-accent-light);
+}
+
+.summary-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(5, 150, 105, 0.02) 100%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.summary-section:hover::before {
+    opacity: 1;
+}
+
+.summary-section h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    position: relative;
+    padding-bottom: var(--space-sm);
+}
+
+.summary-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-gradient-start), var(--color-gradient-end));
+    border-radius: var(--radius-sm);
+}
+
+.summary-section h2 i {
+    color: var(--color-accent);
+    background-color: rgba(5, 150, 105, 0.1);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.summary-section:hover h2 i {
+    transform: scale(1.1);
+    background-color: rgba(5, 150, 105, 0.15);
+}
+
+.summary-section p {
+    font-size: 1.125rem;
+    color: var(--color-secondary);
+    margin-bottom: var(--space-md);
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+.summary-section strong {
+    color: var(--color-accent);
+    font-weight: 600;
+    position: relative;
+    padding: 0 2px;
+}
+
+.summary-section strong::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(5, 150, 105, 0.2);
+    border-radius: var(--radius-sm);
+}
+
+/* Data List - Style tableau financier */
+.data-list {
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+    background-image: 
+        linear-gradient(to right, var(--color-border) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+.data-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--color-accent), var(--color-finance));
+}
+
+.data-list ul {
+    list-style: none;
+    display: grid;
+    gap: var(--space-md);
+    position: relative;
+    z-index: 1;
+}
+
+.data-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    color: var(--color-secondary);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    padding: var(--space-sm);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid transparent;
+    transition: var(--transition);
+}
+
+.data-list li:nth-child(1) { border-left-color: var(--color-accent); }
+.data-list li:nth-child(2) { border-left-color: var(--color-finance); }
+.data-list li:nth-child(3) { border-left-color: var(--color-gold); }
+.data-list li:nth-child(4) { border-left-color: var(--color-muted); }
+
+.data-list li:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-sm);
+    background-color: var(--color-light);
+}
+
+.data-list li::before {
+    content: '✓';
+    flex-shrink: 0;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-top: 0.1em;
+    font-size: 1.1em;
+}
+
+/* Process Grid */
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+
+.process-item {
+    padding: var(--space-lg);
+    background-color: var(--color-light);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.process-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(5, 150, 105, 0.03) 100%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.process-item:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-accent-light);
+    box-shadow: var(--shadow-md);
+}
+
+.process-item:hover::before {
+    opacity: 1;
+}
+
+.process-item h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    color: var(--color-primary);
+    position: relative;
+    display: inline-block;
+    padding-bottom: var(--space-xs);
+}
+
+.process-item h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-accent);
+    border-radius: var(--radius-sm);
+    transition: width 0.3s ease;
+}
+
+.process-item:hover h4::after {
+    width: 48px;
+}
+
+.process-item p {
+    font-size: 1rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+/* Results Box - Style rapport financier */
+.results-box {
+    margin-top: var(--space-lg);
+    padding: var(--space-xl);
+    background: linear-gradient(135deg, var(--color-success-light) 0%, var(--color-chart) 100%);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(5, 150, 105, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.results-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" opacity="0.05"><rect x="0" y="0" width="60" height="60" fill="none" stroke="%23059669" stroke-width="1"/><path d="M0,0 L60,60 M60,0 L0,60" stroke="%231d4ed8" stroke-width="0.5"/></svg>');
+}
+
+.results-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--color-accent), var(--color-finance));
+}
+
+.results-box p {
+    font-size: 1.125rem;
+    color: var(--color-secondary);
+    margin-bottom: var(--space-md);
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+.results-box strong {
+    color: var(--color-accent);
+    font-weight: 700;
+    position: relative;
+    padding: 0 2px;
+}
+
+.results-box strong::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(5, 150, 105, 0.3);
+    border-radius: var(--radius-sm);
+}
+
+/* CTA Section */
+.cta-section {
+    margin-top: var(--space-xxl);
+    position: relative;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 600px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+.cta-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-xl);
+    align-items: center;
+    padding: var(--space-xl);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #1e293b 100%);
+    border-radius: var(--radius-lg);
+    color: var(--color-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><path d="M0,0 L100,100 M100,0 L0,100" stroke="%2310b981" stroke-width="0.5"/></svg>') repeat,
+        radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.1) 0%, transparent 50%);
+}
+
+.cta-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-finance));
+}
+
+.cta-content {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    color: var(--color-light);
+    font-family: var(--font-finance), var(--font-primary);
+}
+
+.cta-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-finance));
+    color: var(--color-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-finance), var(--font-primary);
+    letter-spacing: 0.02em;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(5, 150, 105, 0.3);
+    letter-spacing: 0.03em;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary i {
+    color: var(--color-light);
+    font-size: 1.125rem;
+    opacity: 0.9;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover i {
+    transform: translateX(4px);
+}
+
+/* Footer */
+.ds-footer {
+    padding: var(--space-xl) 0;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-size: 0.9375rem;
+    background-color: var(--color-surface);
+    position: relative;
+}
+
+.ds-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+.ds-footer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    opacity: 0.5;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .ds-hero-project h1 {
+        font-size: 3rem;
+    }
+    
+    .lead {
+        font-size: 1.25rem;
+    }
+    
+    .summary-section h2 {
+        font-size: 2rem;
+    }
+    
+    .cta-card {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .ds-hero-project {
+        padding: var(--space-xl) 0;
+    }
+    
+    .ds-hero-project h1 {
+        font-size: 2.5rem;
+    }
+    
+    .lead {
+        font-size: 1.125rem;
+    }
+    
+    .summary-section {
+        padding: var(--space-lg);
+    }
+    
+    .summary-section h2 {
+        font-size: 1.75rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+    
+    .summary-section h2 i {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+    
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .btn-primary {
+        padding: 0.875rem 1.75rem;
+        font-size: 0.9375rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ds-hero-project h1 {
+        font-size: 2rem;
+    }
+    
+    .summary-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .summary-section p,
+    .cta-content p {
+        font-size: 1rem;
+    }
+    
+    .data-list {
+        padding: var(--space-md);
+    }
+    
+    .data-list li {
+        font-size: 1rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(5, 150, 105, 0); }
+}
+
+.summary-section,
+.cta-card {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+}
+
+.summary-section:nth-child(1) { animation-delay: 0.1s; }
+.summary-section:nth-child(2) { animation-delay: 0.2s; }
+.summary-section:nth-child(3) { animation-delay: 0.3s; }
+.cta-card { animation-delay: 0.4s; }
+
+/* Animation spéciale pour l'icône dollar */
+.summary-section:nth-child(1) h2 i {
+    animation: pulse-glow 3s infinite;
+}
+
+/* Effet de comptage pour les pourcentages (si ajoutés plus tard) */
+.count-up {
+    display: inline-block;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-surface);
+    border-left: 1px solid var(--color-border);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--color-accent), var(--color-finance));
+    border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, var(--color-accent-light), var(--color-finance));
+}
+
+/* Effets de sélection */
+::selection {
+    background-color: rgba(5, 150, 105, 0.2);
+    color: var(--color-primary);
+}
+
+/* Ajout de la police Montserrat pour les titres financiers */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap');
+
+.ds-hero-project h1,
+.cta-content h3 {
+    font-family: var(--font-finance), var(--font-primary);
+}
+
+/* Effet de graphique dans l'arrière-plan */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(29, 78, 216, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}

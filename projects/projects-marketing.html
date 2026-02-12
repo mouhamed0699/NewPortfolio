@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Analytics | Portfolio Data</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/marketing.css">
+    <style>
+        /* Surcharge spécifique pour l'univers Marketing (tons corail/orange pour l'action) */
+        :root { --marketing-color: #ff4757; }
+        .badge.marketing { background: rgba(255, 71, 87, 0.1); color: var(--marketing-color); }
+        .text-gradient-mkt { background: linear-gradient(to right, #ff4757, #ffa502); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <main>
+        <section class="hero-projects">
+            <div class="container">
+                <div class="hero-content">
+                    <a href="../projects.html" class="back-link"><i class="fas fa-chevron-left"></i> Retour aux expertises</a>
+                    <span class="">Impact Business</span>
+                    <h1>Marketing <span class="text-gradient-mkt">Analytics.</span></h1>
+                    <p>Optimisation du tunnel de conversion et analyse de la performance client via des modèles de segmentation et de prédiction du churn.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <div class="container">
+                <div class="projects-grid">
+                    
+                    <a href="risk- Marketing.html" class="project-card">
+                        <div class="card-img-container">
+                            <img src="https://www.cumberland.college/wp-content/uploads/2024/06/segmentation-marketing.jpg" alt="Segmentation RFM">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-icon" style="background: var(--marketing-color);"><i class="fas fa-users"></i></div>
+                            <h3>Analyse des Risques</h3>
+                            <p>– Projet Marketing & Conversion : Exploration visuelle et analyse stratégique basée sur les comportements clients</p>
+                            <div class="tech-tags">
+                                <span>Python</span><span>Seaborn</span><span>Matplotlib</span>
+                            </div>
+                            <span class="btn-text">Consulter l'étude <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="project-card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600" alt="Social Listening">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-icon" style="background: var(--marketing-color);"><i class="fas fa-comments"></i></div>
+                            <h3>Social Listening & Sentiment</h3>
+                            <p>Analyse automatique des avis clients et des tweets pour mesurer l'e-réputation d'une marque en temps réel grâce au NLP.</p>
+                            <span class="btn-text">Consulter l'étude <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="project-card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600" alt="Dashboard Marketing">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-icon" style="background: var(--marketing-color);"><i class="fas fa-funnel-dollar"></i></div>
+                            <h3>Dashboard de Performance ROI</h3>
+                            <p>Centralisation des données publicitaires (Ads) et ventes pour un pilotage précis du coût d'acquisition client (CAC) et du ROAS.</p>
+                            <div class="tech-tags">
+                                <span>Power BI</span><span>SQL</span><span>ETL</span>
+                            </div>
+                            <span class="btn-text">Consulter l'étude <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
